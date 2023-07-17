@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import React, { HTMLAttributes, PropsWithChildren, ReactNode } from 'react';
 import './styles.css';
 
 interface ButtonProps extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>>{
@@ -21,6 +21,7 @@ interface ButtonProps extends PropsWithChildren<HTMLAttributes<HTMLButtonElement
   /**
    * Optional click handler
    */
+  children: ReactNode;
   onClick?: () => void;
   type?: "button" | "submit";
 }
@@ -33,6 +34,7 @@ const Button = ({
   size = 'medium',
   backgroundColor,
   label,
+  children,
   ...props
 }: ButtonProps) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
@@ -47,6 +49,7 @@ const Button = ({
           background-color: ${backgroundColor};
         }
       `}</style>
+      {children}
     </button>
   );
 } 

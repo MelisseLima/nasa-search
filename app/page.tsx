@@ -62,8 +62,8 @@ export default function Home() {
         <form className='flex flex-row gap-4' onSubmit={handleSubmit} >
 
           <Input name='keyword' defaultValue={keyword?.toString()} required type="text" placeholder='Search' className='w-96'/>
-          <Input name='yearStart' defaultValue={yearStart?.toString()} type="text" placeholder='Year Start' className='leading-9 px-2 bg-transparent border border-gray-400 rounded-full w-24 text-white outline-none focus:ring-0'/>
-          <Input name='yearEnd' defaultValue={yearEnd?.toString()} type="text" placeholder='Year End' className='leading-9 px-2 bg-transparent border border-gray-400 rounded-full w-24 text-white outline-none focus:ring-0'/>
+          <Input name='yearStart' defaultValue={yearStart?.toString()} type="text" placeholder='Year Start' className='w-25'/>
+          <Input name='yearEnd' defaultValue={yearEnd?.toString()} type="text" placeholder='Year End' className='w-25'/>
         
           <Button type="submit" className='bg-white text-white rounded-full w-10 h-10 justify-center items-center' label={''}>
             <Image 
@@ -78,17 +78,17 @@ export default function Home() {
       
       
       </div>
-      <div className="pb-2 pt-12 px-24 align-start min-h-1/5 w-full">
-        <div className="flex flex-row justify-between border-b border-indigo " >
-          <div className='flex flex-row'>
-            <Typography variant='regular4' className="text-primary text-white mr-2">Results for </Typography> 
-            <Typography variant='bold4' className='text-white'> &quot;{keyword}&quot;</Typography>
+        {results && results.length > 0 && (
+          <div className="pb-2 pt-12 px-24 align-start min-h-1/5 w-full">
+          <div className="flex flex-row justify-between border-b border-indigo " >
+            <div className='flex flex-row'>
+              <Typography variant='regular4' className="text-primary text-white mr-2">Results for </Typography> 
+              <Typography variant='bold4' className='text-white'> &quot;{keyword}&quot;</Typography>
+            </div>
+            <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
           </div>
-          <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
-        </div>
 
-        {/* Display the search results */}
-        <div className='grid py-8'>
+          <div className='grid grid-cols-4 gap-1 grid-auto-cols-250px py-8'>
             {results.map((result: {links: any[], data: InfoImage[]}) => (
               <ImagePreview
                 key={result.data[0].nasa_id}
@@ -97,7 +97,8 @@ export default function Home() {
               />
             ))}
           </div>
-      </div>
+        </div>
+        )}
       </div>
     </main>
   )

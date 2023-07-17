@@ -1,0 +1,3 @@
+.image-container {
+    @apply relative w-[250px] h-[125px]
+}
