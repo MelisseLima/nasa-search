@@ -2,11 +2,19 @@
 import Image from 'next/image'
 import { useState } from 'react';
 import { Input, Typography, Button, ImagePreview } from './components';
-import { searchItems } from './services/api';
+import { searchItems, getItems } from './services/api';
+import { useSearchParams } from 'next/navigation'
 
 export default function Home() {
 
+  const params = useSearchParams()
   const [results, setResults] = useState([]);
+  const [keyword, ] = useState(params.get("keyword"))
+  const [yearStart,] = useState(params.get("yearStart"))
+  const [yearEnd, ] = useState(params.get("yearEnd"))
+
+  
+
   
   const handleSubmit = async (event: any) => {
     const keyword = event.target.elements.keyword.value;
@@ -44,9 +52,9 @@ export default function Home() {
       </div>
       <form className='flex flex-row gap-4' onSubmit={handleSubmit} >
 
-        <Input name='keyword' required type="text" placeholder='Search' className='w-96'/>
-        <Input name='yearStart' type="text" placeholder='Year Start' className='leading-9 px-2 bg-transparent border border-gray-400 rounded-full w-24 text-white outline-none focus:ring-0'/>
-        <Input name='yearEnd' type="text" placeholder='Year End' className='leading-9 px-2 bg-transparent border border-gray-400 rounded-full w-24 text-white outline-none focus:ring-0'/>
+        <Input name='keyword' defaultValue={keyword?.toString()} required type="text" placeholder='Search' className='w-96'/>
+        <Input name='yearStart' defaultValue={yearStart?.toString()} type="text" placeholder='Year Start' className='leading-9 px-2 bg-transparent border border-gray-400 rounded-full w-24 text-white outline-none focus:ring-0'/>
+        <Input name='yearEnd' defaultValue={yearEnd?.toString()} type="text" placeholder='Year End' className='leading-9 px-2 bg-transparent border border-gray-400 rounded-full w-24 text-white outline-none focus:ring-0'/>
        
         <Button type="submit" className='bg-white rounded-full w-10 h-10 justify-center items-center' label={''}>
           <Image 
