@@ -14,7 +14,7 @@ interface IFileDetail extends PropsWithChildren<HTMLAttributes<HTMLButtonElement
 
 export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
 
-  const date = selected ? new Date(selected?.data?.date_created?.toString()) : '';
+  const date = selected ? new Date(selected?.data?.date_created?.toString() ?? '') : null;
 
   const formattedDate = date instanceof Date ? date.toLocaleDateString() : '';
 
@@ -47,9 +47,9 @@ export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
       open={isOpen}
       onClose={onClose}
     >
-      <div className="flex items-center justify-center h-screen w-screen max-h-screen overflow-auto bg-indigo">
+      <div className="flex items-center justify-center h-screen w-screen max-h-screen overflow-auto shadow-xl  bg-indigo">
         {selected?.data && (
-          <div className=" text-white shadow-xl h-screen w-screen">
+          <div className=" text-white h-screen w-screen">
             <div className="w-full border-b border-indigo">
               <div className="justify-between flex w-full ">
                 <div className="flex flex-col pl-4 py-4">
@@ -67,7 +67,7 @@ export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
                     />
                     Download
                   </Button>
-                  <Button className="bg-transparent text-white px-6 justify-center items-center border-l border-indigo h-[100%]" label={''}>
+                  <Button onClick={onClose} className="bg-transparent text-white px-6 justify-center items-center border-l border-indigo h-[100%] w-20" label={''}>
                     <Image 
                       src="/close-icon.svg"
                       width={16}
@@ -83,19 +83,19 @@ export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
               <div className="relative h-[60vh] w-[70vw] m-auto mt-4">
                 <Image alt="" layout='fill' objectFit="cover" src={selected.thumbnails} className="rounded-md"/>
               </div>
-              <div className='w-[70vw] m-auto mt-4 border-b border-indigo'>
+              <div className='w-[70vw] m-auto border-b border-indigo py-4'>
                 <Typography variant='regular3'>Information</Typography>
               </div>
-              <div className='w-[70vw] m-auto mt-4 border-b border-indigo justify-between flex'>
+              <div className='w-[70vw] m-auto border-b border-indigo justify-between flex py-4'>
                 <Typography variant='regular5' className='text-gray-300'>Created By</Typography>
                 <Typography variant='regular5' >{selected.data.photographer}</Typography>
               </div>
-              <div className='w-[70vw] m-auto mt-4 border-b border-indigo justify-between flex'>
+              <div className='w-[70vw] m-auto border-b border-indigo justify-between flex py-4'>
                 <Typography variant='regular5' className='text-gray-300'>Date created</Typography>
                 <Typography variant='regular5' >{formattedDate || 'Unknown'}</Typography>
               </div>
-              <div className='w-[70vw] m-auto mt-4 flex flex-col'>
-                <Typography variant='light4'>Description</Typography>
+              <div className='w-[70vw] m-auto flex flex-col  py-4'>
+                <Typography variant='light4' className='py-4'>Description</Typography>
                 <Typography variant='light5'>{selected.data.description}</Typography>
               </div>
             </div>
