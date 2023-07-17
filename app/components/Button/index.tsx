@@ -1,7 +1,7 @@
-import React from 'react';
-import './button.css';
+import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import './styles.css';
 
-interface ButtonProps {
+interface ButtonProps extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>>{
   /**
    * Is this the principal call to action on the page?
    */
@@ -22,12 +22,13 @@ interface ButtonProps {
    * Optional click handler
    */
   onClick?: () => void;
+  type?: "button" | "submit";
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({
+const Button = ({
   primary = false,
   size = 'medium',
   backgroundColor,
@@ -37,7 +38,6 @@ export const Button = ({
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
     <button
-      type="button"
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
       {...props}
     >
@@ -49,4 +49,6 @@ export const Button = ({
       `}</style>
     </button>
   );
-};
+} 
+
+export default Button;

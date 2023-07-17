@@ -5,10 +5,11 @@ import './styles.css';
 export type TextTypes = 'text';
 
 interface IInput extends HTMLAttributes<HTMLInputElement> {
+  name?: string
   error?: string;
   type: TextTypes;
   value?: string;
-  
+  required?: boolean;
 }
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, PropsWithChildren<IInput>> = (
