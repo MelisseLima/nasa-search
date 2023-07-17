@@ -26,10 +26,6 @@ export default function Home() {
     }
   }, [])
 
-  useEffect(() => {
-    console.log(isModalOpen)
-  }, [isModalOpen])
-
   const handleModalClose = () => {
     console.log('enter')
     setIsModalOpen(false);
@@ -61,7 +57,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col h-auto items-center bg-home fixed inset-0 bg-background bg-cover bg-no-repeat">
+    <main className="flex min-h-screen max-h-screen flex-col h-auto items-center bg-home fixed inset-0 bg-background bg-cover bg-no-repeat">
       <div className='relative overflow-y-auto h-screen'>
         <div className='w-full py-16 min-h-4/5 gap-4 flex flex-col items-center'>
           <div className='flex flex-row'>
