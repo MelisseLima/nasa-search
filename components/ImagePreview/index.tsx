@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "../Typography";
-import InfoImage from "@/app/interfaces/InfoImage";
+import InfoImage from "@/interfaces/InfoImage";
 
 import './styles.css'
 

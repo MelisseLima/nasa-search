@@ -1,10 +1,10 @@
 'use client'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
-import { Input, Typography, Button, ImagePreview } from './components';
-import { searchItems } from './services/api';
+import { Input, Typography, Button, ImagePreview } from '../components';
+import { searchItems } from '../services/api';
 import { useSearchParams } from 'next/navigation'
-import InfoImage from './interfaces/InfoImage';
+import InfoImage from '../interfaces/InfoImage';
 
 export default function Home() {
 
@@ -43,7 +43,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col h-auto items-center bg-home fixed inset-0 bg-background bg-cover bg-no-repeat">
       <div className='relative overflow-y-auto h-screen'>
         <div className='w-full py-16 min-h-4/5 gap-4 flex flex-col items-center'>
-          <div className='flex flex-row rounded-sm'>
+          <div className='flex flex-row'>
             <Image
               className="relative"
               src="/nasa-icon.svg"
