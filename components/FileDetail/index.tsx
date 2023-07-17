@@ -1,9 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react';
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import React, { HTMLAttributes, PropsWithChildren, useState } from 'react';
 import Typography from '../Typography';
 import { ImageSelected } from '@/interfaces/ImageSelected';
 import Button from '../Button';
 import Image from 'next/image'
+import { data } from 'autoprefixer';
 
 interface IFileDetail extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   selected: ImageSelected | undefined
@@ -11,11 +12,33 @@ interface IFileDetail extends PropsWithChildren<HTMLAttributes<HTMLButtonElement
   onClose: () => void;
 }
 
-export default function FileDetail({ isOpen, children, selected, onClose }: IFileDetail) {
+export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
 
   const date = selected ? new Date(selected?.data?.date_created?.toString()) : '';
 
   const formattedDate = date instanceof Date ? date.toLocaleDateString() : '';
+
+
+  async function downloadImage() {
+    
+    if(selected) {
+      const response = await fetch(selected?.thumbnails);
+    
+      const blobImage = await response.blob();
+    
+      const href = URL.createObjectURL(blobImage);
+    
+      const anchorElement = document.createElement('a');
+      anchorElement.href = href;
+      anchorElement.download = `${selected?.data?.nasa_id}.png`;
+    
+      document.body.appendChild(anchorElement);
+      anchorElement.click();
+    
+      document.body.removeChild(anchorElement);
+      window.URL.revokeObjectURL(href);
+    }
+  }
 
   return (
     <Dialog
@@ -33,15 +56,27 @@ export default function FileDetail({ isOpen, children, selected, onClose }: IFil
                   <Typography variant="regular3">{selected.data.title}</Typography>
                   <Typography variant="light5" className="text-gray-300">By: {selected.data.photographer || 'Unknown'} | Location: {selected.data.location} </Typography>
                 </div>
-                <Button type="submit" className="bg-transparent text-white px-4 justify-center items-center border-l border-indigo" label={''}>
-                  <Image 
-                    src="/close-icon.svg"
-                    width={16}
-                    height={16}
-                    alt="Search Logo"
-                    className="m-auto"
-                  />
-                </Button>
+                <div className='flex flex-row justify-center items-center'>
+                  <Button onClick={downloadImage} className="text-pink-800 font-regular px-4 justify-center flex flex-row gap-4 bg-pink-300 py-2 mr-3 rounded-md" label={''}>
+                    <Image 
+                      src="/download-icon.svg"
+                      width={16}
+                      height={16}
+                      alt="Search Logo"
+                      className="m-auto"
+                    />
+                    Download
+                  </Button>
+                  <Button className="bg-transparent text-white px-4 justify-center items-center border-l border-indigo" label={''}>
+                    <Image 
+                      src="/close-icon.svg"
+                      width={16}
+                      height={16}
+                      alt="Search Logo"
+                      className="m-auto"
+                    />
+                  </Button>
+                </div>
               </div>
             </div>
             <div id='container-info' className="overflow-y-auto ">

@@ -26,7 +26,12 @@ export default function Home() {
     }
   }, [])
 
+  useEffect(() => {
+    console.log(isModalOpen)
+  }, [isModalOpen])
+
   const handleModalClose = () => {
+    console.log('enter')
     setIsModalOpen(false);
   };
 
@@ -80,7 +85,7 @@ export default function Home() {
           <Input name='yearStart' defaultValue={yearStart?.toString()} type="text" placeholder='Year Start' className='w-25'/>
           <Input name='yearEnd' defaultValue={yearEnd?.toString()} type="text" placeholder='Year End' className='w-25'/>
         
-          <Button type="submit" className='bg-white text-white rounded-full w-10 h-10 justify-center items-center' label={''}>
+          <Button type="submit" className='bg-white text-white rounded-full w-10 h-10 justify-center items-center ' label={''}>
             <Image 
               src='/search-icon.svg'
               width={24}
@@ -97,7 +102,7 @@ export default function Home() {
           <div className="pb-2 pt-12 px-24 align-start min-h-1/5 w-full">
           <div className="flex flex-row justify-between border-b border-indigo " >
             <div className='flex flex-row'>
-              <Typography variant='regular4' className="text-primary text-white mr-2">Results for </Typography> 
+              <Typography variant='regular2' className="text-primary text-white mr-2">Results for </Typography> 
               <Typography variant='bold4' className='text-white'> &quot;{keyword}&quot;</Typography>
             </div>
             <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
