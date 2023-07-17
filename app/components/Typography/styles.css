@@ -1,5 +1,5 @@
 .typography {
-    @apply my-auto transition-all duration-100 text-white;
+    @apply my-auto transition-all duration-100;
 }
 .bold1-typography {
     @apply text-5xl font-semibold leading-9;
