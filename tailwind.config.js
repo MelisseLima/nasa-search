@@ -8,10 +8,16 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'home': "url('/background.svg')",
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      borderColor: {
+        'indigo': '#818CF8'
+      },
+      textColor: {
+        'secondary': '#D1D5DB',
+      }
     },
   },
   plugins: [],

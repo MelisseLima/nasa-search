@@ -1,0 +1,13 @@
+.input-primary {
+  @apply leading-9 px-2 bg-transparent border border-gray-400 rounded-full
+   text-white outline-none transition-colors duration-200 ease-in-out focus:ring-0
+  disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 
+}
+
+.error-input {
+  @apply rounded border border-red-500 ring ring-red-100;
+}
+
+.error-msg {
+  @apply text-red-500;
+}
