@@ -59,7 +59,7 @@ export default function Home() {
           <Typography variant='bold1' align='center' className="py-4 text-transparent bg-clip-text bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 bg-gradient-to-lt from-white-alpha-56 via-white-alpha-56 to-white bg-gradient-to-t">Find Something Amazing </Typography>
           <Typography variant='bold1' align='center' className='text-center text-white'>in our vast file library!</Typography>
         </div>
-        <form className='flex flex-row gap-4' onSubmit={handleSubmit} >
+        <form className='flex flex-row gap-4 md:flex-row md:items-center' onSubmit={handleSubmit} >
 
           <Input name='keyword' defaultValue={keyword?.toString()} required type="text" placeholder='Search' className='w-96'/>
           <Input name='yearStart' defaultValue={yearStart?.toString()} type="text" placeholder='Year Start' className='w-25'/>
@@ -88,7 +88,7 @@ export default function Home() {
             <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
           </div>
 
-          <div className='grid grid-cols-4 gap-1 grid-auto-cols-250px py-8'>
+          <div className='flex flex-wrap gap-3 py-8'>
             {results.map((result: {links: any[], data: InfoImage[]}) => (
               <ImagePreview
                 key={result.data[0].nasa_id}
