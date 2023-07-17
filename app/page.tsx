@@ -1,15 +1,20 @@
 'use client'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
-import { Input, Typography, Button, ImagePreview } from '../components';
+import { Input, Typography, Button, ImagePreview, FileDetail } from '../components';
 import { searchItems } from '../services/api';
 import { useSearchParams } from 'next/navigation'
 import InfoImage from '../interfaces/InfoImage';
+import { ImageSelected } from '@/interfaces/ImageSelected';
 
 export default function Home() {
 
   const params = useSearchParams()
+
   const [results, setResults] = useState([]);
+  const [selected, setSelected] = useState<ImageSelected>()
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const keyword = params.get("keyword")
   const yearStart = params.get("yearStart")
   const yearEnd = params.get("yearEnd")
@@ -20,7 +25,18 @@ export default function Home() {
       searchSearch(keyword?.toString(), yearStart?.toString(), yearEnd?.toString())
     }
   }, [])
-  
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalOpen = (data: InfoImage, thumbnails: string) => {
+    const newSelected = {data, thumbnails} as ImageSelected
+    setSelected(newSelected)
+
+    setIsModalOpen(true);
+  };
+
   const handleSubmit = async (event: any) => {
     const keyword = event.target.elements.keyword.value;
     const yearStart = event.target.elements.yearStart.value;
@@ -53,7 +69,6 @@ export default function Home() {
               priority
             />
             <Typography variant='medium1' className='text-white'>NASA Search</Typography>
-
           </div>
         <div className='flex flex-col pb-4'>
           <Typography variant='bold1' align='center' className="py-4 text-transparent bg-clip-text bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 bg-gradient-to-lt from-white-alpha-56 via-white-alpha-56 to-white bg-gradient-to-t">Find Something Amazing </Typography>
@@ -88,17 +103,19 @@ export default function Home() {
             <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
           </div>
 
-          <div className='flex flex-wrap gap-3 py-8'>
+          <div className='flex flex-wrap gap-4 py-8'>
             {results.map((result: {links: any[], data: InfoImage[]}) => (
               <ImagePreview
                 key={result.data[0].nasa_id}
                 thumbnailUrl={result.links[0].href}
                 data={result.data[0]}
+                handleModalOpen={handleModalOpen}
               />
             ))}
           </div>
         </div>
         )}
+        <FileDetail isOpen={isModalOpen} onClose={handleModalClose} selected={selected}/>
       </div>
     </main>
   )
