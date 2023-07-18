@@ -91,6 +91,11 @@ export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
                 <Typography variant='light4' className='py-4'>Description</Typography>
                 <Typography variant='light5'>{selected.data.description}</Typography>
               </div>
+
+              <div className='w-[70vw] m-auto flex flex-row justify-between py-2 border-t border-b border-indigo'>
+                <Typography variant='light4' className='py-4'>Keywords</Typography>
+                <Typography variant='light5'>{selected.data.keywords.join(", ")}</Typography>
+              </div>
             </div>
           </div>
         )}
