@@ -92,7 +92,7 @@ export default function Home() {
             <Typography variant='medium1' className='text-white'>NASA Search</Typography>
           </div>
         <div className='hidden md:flex md:flex-col md:pb-4'>
-          <Typography variant='bold1' align='center' className="py-4 text-transparent bg-clip-text bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 bg-gradient-to-lt from-white-alpha-56 via-white-alpha-56 to-white bg-gradient-to-t">Find Something Amazing </Typography>
+          <Typography variant='bold1' align='center' className="py-4 text-transparent bg-clip-text bg-gradient-to-tr from-blue-400 via-purple-300 to-pink-400 bg-gradient-to-lt from-white-alpha-56 via-white-alpha-56 to-white bg-gradient-to-t">Find Something Amazing </Typography>
           <Typography variant='bold1' align='center' className='text-center text-white'>in our vast file library!</Typography>
         </div>
         <form className='flex flex-col gap-4 md:flex-row md:items-center ' onSubmit={handleSubmit} >
