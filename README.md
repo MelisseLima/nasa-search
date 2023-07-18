@@ -1,13 +1,17 @@
 
-<h1 align="center" style="display:flex; gap:16px;">
+<h1 align="center" style="display:flex; gap:16px; margin:auto;">
     <span>Nasa Search</span>
-    <img height="35px" href="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-4491-900b-e28f54297f1f" width="35px"src="https://github.com/MelisseCabral/nasa-search/assets/9977351/f85c6345-a04c-469a-9403-d610923cdd08"/>
+    <img href="https://user-images.githubusercontent.com/9977351/254398528-c7c3e236-bac6-4d85-ba2f-f72e80d95888.svg" width="38px" height="38px" src="https://user-images.githubusercontent.com/9977351/254398528-c7c3e236-bac6-4d85-ba2f-f72e80d95888.svg"/>
 </h1>
+
+
+
+
 
 <h1 align="center">
     <img 
-href="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-4491-900b-e28f54297f1f" 
-src="https://github.com/MelisseCabral/nasa-search/assets/9977351/10de531f-d393-4053-9df7-a2598b73071d"/>
+href="https://user-images.githubusercontent.com/9977351/254398418-e8e72e67-5fa8-450c-afd4-b3042c020abe.gif" 
+src="https://user-images.githubusercontent.com/9977351/254398418-e8e72e67-5fa8-450c-afd4-b3042c020abe.gif"/>
 </h1>
 
 # [DEMO!](https://nasa-search-codekeeper.vercel.app) 
@@ -32,7 +36,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 
-## Getting Started with storybook [(Storybook DEMO!)](https://nasa-search-codekeeper.vercel.app)
+## Getting Started with storybook [(Storybook DEMO!)](https://nasa-search-storybook-3vvhsjqai-melissecabral.vercel.app)
 
 First, run the development server:
 
