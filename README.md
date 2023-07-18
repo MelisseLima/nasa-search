@@ -1,4 +1,4 @@
-Inspired on the [design](https://www.figma.com/community/file/1187809544925739392) made by [Aaron McAdam](https://www.figma.com/community/file/1187809544925739392#:~:text=By-,Aaron%20McAdam,-%7C).
+Inspired on the [design](https://www.figma.com/community/file/1187809544925739392).
 
 ## Getting Started
 
