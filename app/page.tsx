@@ -3,13 +3,14 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import { Input, Typography, Button, ImagePreview, FileDetail } from '../components';
 import { searchItems } from '../services/api';
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import InfoImage from '../interfaces/InfoImage';
 import { ImageSelected } from '@/interfaces/ImageSelected';
 import SearchIcon from './../public/search-icon.svg'
 export default function Home() {
 
   const params = useSearchParams()
+  const router = useRouter()
 
   const [results, setResults] = useState([]);
   const [selected, setSelected] = useState<ImageSelected>()
@@ -38,11 +39,14 @@ export default function Home() {
   };
 
   const handleSubmit = async (event: any) => {
+    event.preventDefault()
     const keyword = event.target.elements.keyword.value;
     const yearStart = event.target.elements.yearStart.value;
     const yearEnd = event.target.elements.yearEnd.value;
 
     searchSearch(keyword, yearStart, yearEnd)
+    router.push(`?keyword=${keyword}&yearStart=${yearStart}&yearEnd=${yearEnd}`)
+
   };
 
   const searchSearch = (keyword: string, yearStart: string | undefined, yearEnd: string | undefined) =>{
@@ -81,13 +85,13 @@ export default function Home() {
               name='yearStart'
               value={yearStart || undefined}
               placeholder='Year Start'
-              className='w-28' type={'text'}          />
+              className='w-28' type={'text'} />
 
           <Input
               name='yearEnd'
               value={yearEnd || undefined}
               placeholder='Year End'
-              className='w-28' type={'text'}          />
+              className='w-28' type={'text'} />
         
           <Button 
             type="submit" 
