@@ -6,7 +6,6 @@ import Button from '../Button';
 import Image from 'next/image'
 import DownloadIcon from './../../public/download-icon.svg'
 import CloseIcon from './../../public/close-icon.svg'
-import classNames from 'classnames';
 
 interface IFileDetail extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   selected: ImageSelected | undefined
@@ -61,7 +60,7 @@ export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
                 <div className='flex flex-row justify-center items-center'>
                   <Button onClick={downloadImage} 
                     startAddornment={<DownloadIcon />} 
-                    className="text-pink-800 font-regular px-4 justify-center flex flex-row gap-4 bg-pink-300 py-2 mr-3 rounded-md" 
+                    className="text-pink-800 font-regular px-4 justify-center gap-4 bg-pink-300 py-2 mr-3 rounded-md hidden md:flex md:flex-row" 
                     label={''}>
                     Download
                   </Button>
