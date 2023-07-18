@@ -1,11 +1,13 @@
 
 <h1 align="center" style="display:flex; gap:16px;">
     <span>Nasa Search</span>
-    <img height="35px" href="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-4491-900b-e28f54297f1f"width="35px"src="https://github.com/MelisseCabral/nasa-search/assets/9977351/f85c6345-a04c-469a-9403-d610923cdd08"/>
+    <img height="35px" href="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-4491-900b-e28f54297f1f" width="35px"src="https://github.com/MelisseCabral/nasa-search/assets/9977351/f85c6345-a04c-469a-9403-d610923cdd08"/>
 </h1>
 
 <h1 align="center">
-    <img src="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-4491-900b-e28f54297f1f"/>
+    <img 
+href="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-4491-900b-e28f54297f1f" 
+src="https://github.com/MelisseCabral/nasa-search/assets/9977351/aec306be-c92d-448c-b933-7fcae6ef9392"/>
 </h1>
 
 # [DEMO!](https://nasa-search-codekeeper.vercel.app) 
