@@ -7,7 +7,7 @@
 <h1 align="center">
     <img 
 href="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-4491-900b-e28f54297f1f" 
-src="://github.com/MelisseCabral/nasa-search/assets/9977351/10de531f-d393-4053-9df7-a2598b73071d"/>
+src="https://github.com/MelisseCabral/nasa-search/assets/9977351/10de531f-d393-4053-9df7-a2598b73071d"/>
 </h1>
 
 https
