@@ -1,4 +1,17 @@
+
+<h1 align="center" style="display:flex; gap:16px;">
+    <span>Nasa Search</span>
+    <img height="35px" width="35px"src="https://github.com/MelisseCabral/nasa-search/assets/9977351/f85c6345-a04c-469a-9403-d610923cdd08"/>
+</h1>
+
+<h1 align="center">
+    <img src="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-4491-900b-e28f54297f1f"/>
+</h1>
+
+# [DEMO!](https://nasa-search-codekeeper.vercel.app) 
+
 🌴 Inspired on the [Figma](https://www.figma.com/community/file/1187809544925739392)
+
 
 ## Getting Started with development server
 
@@ -17,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 
-## Getting Started with storybook
+## Getting Started with storybook [(Storybook DEMO!)](https://nasa-search-codekeeper.vercel.app)
 
 First, run the development server:
 
