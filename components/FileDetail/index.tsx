@@ -4,7 +4,9 @@ import Typography from '../Typography';
 import { ImageSelected } from '@/interfaces/ImageSelected';
 import Button from '../Button';
 import Image from 'next/image'
-import { data } from 'autoprefixer';
+import DownloadIcon from './../../public/download-icon.svg'
+import CloseIcon from './../../public/close-icon.svg'
+import classNames from 'classnames';
 
 interface IFileDetail extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   selected: ImageSelected | undefined
@@ -57,25 +59,17 @@ export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
                   <Typography variant="light5" className="text-gray-300">By: {selected.data.photographer || 'Unknown'} | Location: {selected.data.location} </Typography>
                 </div>
                 <div className='flex flex-row justify-center items-center'>
-                  <Button onClick={downloadImage} className="text-pink-800 font-regular px-4 justify-center flex flex-row gap-4 bg-pink-300 py-2 mr-3 rounded-md" label={''}>
-                    <Image 
-                      src="/download-icon.svg"
-                      width={16}
-                      height={16}
-                      alt="Search Logo"
-                      className="m-auto"
-                    />
+                  <Button onClick={downloadImage} 
+                    startAddornment={<DownloadIcon />} 
+                    className="text-pink-800 font-regular px-4 justify-center flex flex-row gap-4 bg-pink-300 py-2 mr-3 rounded-md" 
+                    label={''}>
                     Download
                   </Button>
-                  <Button onClick={onClose} className="bg-transparent text-white px-6 justify-center items-center border-l border-indigo h-[100%] w-20" label={''}>
-                    <Image 
-                      src="/close-icon.svg"
-                      width={16}
-                      height={16}
-                      alt="Search Logo"
-                      className="m-auto"
-                    />
-                  </Button>
+
+                  <Button onClick={onClose} 
+                  startAddornment={<CloseIcon className='m-auto' />}
+                  className="bg-transparent text-white px-6 justify-center items-center border-l border-indigo h-[100%] w-20" 
+                  label={''}/>
                 </div>
               </div>
             </div>

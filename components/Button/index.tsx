@@ -1,15 +1,12 @@
 import React, { HTMLAttributes, PropsWithChildren, ReactNode } from 'react';
 import './styles.css';
+import Typography from '../Typography';
 
 interface ButtonProps extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>>{
   /**
    * Is this the principal call to action on the page?
    */
   primary?: boolean;
-  /**
-   * What background color to use
-   */
-  backgroundColor?: string;
   /**
    * How large should the button be?
    */
@@ -21,7 +18,9 @@ interface ButtonProps extends PropsWithChildren<HTMLAttributes<HTMLButtonElement
   /**
    * Optional click handler
    */
-  children: ReactNode;
+  startAddornment?: ReactNode;
+  endAddornment?: ReactNode;
+  children?: ReactNode;
   onClick?: () => void;
   type?: "button" | "submit";
 }
@@ -32,8 +31,9 @@ interface ButtonProps extends PropsWithChildren<HTMLAttributes<HTMLButtonElement
 const Button = ({
   primary = false,
   size = 'medium',
-  backgroundColor,
   label,
+  startAddornment = null,
+  endAddornment = null,
   children,
   ...props
 }: ButtonProps) => {
@@ -43,13 +43,12 @@ const Button = ({
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
       {...props}
     >
-      {label}
-      <style jsx>{`
-        button {
-          background-color: ${backgroundColor};
-        }
-      `}</style>
-      {children}
+      {startAddornment}
+      <Typography variant={'regular5'} >
+        {label}
+        {children}
+      </Typography>
+      {endAddornment}
     </button>
   );
 } 

@@ -6,7 +6,7 @@ import { searchItems } from '../services/api';
 import { useSearchParams } from 'next/navigation'
 import InfoImage from '../interfaces/InfoImage';
 import { ImageSelected } from '@/interfaces/ImageSelected';
-
+import SearchIcon from './../public/search-icon.svg'
 export default function Home() {
 
   const params = useSearchParams()
@@ -27,7 +27,6 @@ export default function Home() {
   }, [])
 
   const handleModalClose = () => {
-    console.log('enter')
     setIsModalOpen(false);
   };
 
@@ -77,19 +76,25 @@ export default function Home() {
         </div>
         <form className='flex flex-row gap-4 md:flex-row md:items-center' onSubmit={handleSubmit} >
 
-          <Input name='keyword' defaultValue={keyword?.toString()} required type="text" placeholder='Search' className='w-96'/>
-          <Input name='yearStart' defaultValue={yearStart?.toString()} type="text" placeholder='Year Start' className='w-25'/>
-          <Input name='yearEnd' defaultValue={yearEnd?.toString()} type="text" placeholder='Year End' className='w-25'/>
+          <Input name='keyword' defaultValue={keyword?.toString()} required type="text" placeholder='Search' className='w-80'/>
+          <Input
+              name='yearStart'
+              value={yearStart || undefined}
+              placeholder='Year Start'
+              className='w-28' type={'text'}          />
+
+          <Input
+              name='yearEnd'
+              value={yearEnd || undefined}
+              placeholder='Year End'
+              className='w-28' type={'text'}          />
         
-          <Button type="submit" className='bg-white text-white rounded-full w-10 h-10 justify-center items-center ' label={''}>
-            <Image 
-              src='/search-icon.svg'
-              width={24}
-              height={24}
-              alt="Search Logo"
-              className='m-auto'
-              />
-          </Button>
+          <Button 
+            type="submit" 
+            className='bg-transparent border border-gray-400 text-white rounded-full w-10 h-10 justify-center items-center hover:border-white transition-all' 
+            label={''}
+            endAddornment={<SearchIcon className='m-auto w-4 h-4'/>} 
+          />
         </form>
       
       
@@ -104,7 +109,7 @@ export default function Home() {
             <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
           </div>
 
-          <div className='flex flex-wrap gap-4 py-8'>
+          <div className='flex flex-wrap gap-4 py-8 justify-center'>
             {results.map((result: {links: any[], data: InfoImage[]}) => (
               <ImagePreview
                 key={result.data[0].nasa_id}
