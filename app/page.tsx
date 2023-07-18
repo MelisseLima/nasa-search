@@ -13,7 +13,7 @@ export default function Home() {
   const params = useSearchParams()
   const router = useRouter()
 
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<any[]>();
   const [totalHits, setTotalHits] = useState<number>();
   const [selected, setSelected] = useState<ImageSelected>()
   const [isLoading, setIsLoading] = useState(false); 
@@ -147,11 +147,15 @@ export default function Home() {
           </div>
         </div>
         )}
-          </div>
-        ) : (
-          <div className="flex justify-center items-center h-64 text-white">
-            <Typography>No results found.</Typography>
-          </div>
+          </div>)
+          : <></>
+        }
+
+        {keyword && !isLoading && results && (
+            <div className="flex justify-center items-center h-64 text-white">
+              <Typography variant='regular4'>No results found.</Typography>
+            </div>
+          
         )}
       
       </div>
