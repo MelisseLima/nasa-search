@@ -14,6 +14,7 @@ export default function Home() {
 
   const [results, setResults] = useState([]);
   const [selected, setSelected] = useState<ImageSelected>()
+  const [isLoading, setIsLoading] = useState(false); 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const keyword = params.get("keyword")
@@ -49,14 +50,18 @@ export default function Home() {
 
   };
 
-  const searchSearch = (keyword: string, yearStart: string | undefined, yearEnd: string | undefined) =>{
-    searchItems(keyword, { media_type: 'image'})
-    .then(response => {
-      setResults(response.collection.items)
-    })
-    .catch(error => {
-      console.error('An error occurred during the search:', error);
-    });
+  const searchSearch = (keyword: string, yearStart: string | undefined, yearEnd: string | undefined) => {
+    setIsLoading(true);
+
+    searchItems(keyword, { media_type: 'image' })
+      .then(response => {
+        setResults(response.collection.items)
+        setIsLoading(false); // Set loading state to false after the API request
+      })
+      .catch(error => {
+        console.error('An error occurred during the search:', error);
+        setIsLoading(false); // Set loading state to false if an error occurs
+      });
   }
 
   return (
@@ -101,30 +106,45 @@ export default function Home() {
           />
         </form>
       
-      
-      </div>
-        {results && results.length > 0 && (
-          <div className="pb-2 pt-12 px-24 align-start min-h-1/5 w-full">
-          <div className="flex flex-row justify-between border-b border-indigo " >
-            <div className='flex flex-row'>
-              <Typography variant='regular2' className="text-primary text-white mr-2">Results for </Typography> 
-              <Typography variant='bold4' className='text-white'> &quot;{keyword}&quot;</Typography>
-            </div>
-            <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64 text-white">
+            <div className="w-12 h-12 rounded-full animate-spin absolute border-2 border-solid border-indigo border-t-transparent"></div>
           </div>
+        ) : results && results.length > 0 ? (
+          <div className="pb-2 pt-12 px-24 align-start min-h-1/5 w-full">
+            {results && results.length > 0 && (
+              <div className="pb-2 pt-12 px-24 align-start min-h-1/5 w-full">
+              <div className="flex flex-row justify-between border-b border-indigo " >
+                <div className='flex flex-row'>
+                  <Typography variant='regular2' className="text-primary text-white mr-2">Results for </Typography> 
+                  <Typography variant='bold4' className='text-white'> &quot;{keyword}&quot;</Typography>
+                </div>
+                <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
+              </div>
 
-          <div className='flex flex-wrap gap-4 py-8 justify-center'>
-            {results.map((result: {links: any[], data: InfoImage[]}) => (
-              <ImagePreview
-                key={result.data[0].nasa_id}
-                thumbnailUrl={result.links[0].href}
-                data={result.data[0]}
-                handleModalOpen={handleModalOpen}
-              />
-            ))}
+              <div className='flex flex-wrap gap-4 py-8 justify-center'>
+                {results.map((result: {links: any[], data: InfoImage[]}) => (
+                  <ImagePreview
+                    key={result.data[0].nasa_id}
+                    thumbnailUrl={result.links[0].href}
+                    data={result.data[0]}
+                    handleModalOpen={handleModalOpen}
+                  />
+                ))}
           </div>
         </div>
         )}
+          </div>
+        ) : (
+          <div className="flex justify-center items-center h-64 text-white">
+            <Typography>No results found.</Typography>
+          </div>
+        )}
+      
+      </div>
+
+
+        
         <FileDetail isOpen={isModalOpen} onClose={handleModalClose} selected={selected}/>
       </div>
     </main>
