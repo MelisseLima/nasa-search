@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import InfoImage from '../interfaces/InfoImage';
 import { ImageSelected } from '@/interfaces/ImageSelected';
 import SearchIcon from './../public/search-icon.svg'
+
 export default function Home() {
 
   const params = useSearchParams()
@@ -79,31 +80,32 @@ export default function Home() {
             />
             <Typography variant='medium1' className='text-white'>NASA Search</Typography>
           </div>
-        <div className='flex flex-col pb-4'>
+        <div className='hidden md:flex md:flex-col md:pb-4'>
           <Typography variant='bold1' align='center' className="py-4 text-transparent bg-clip-text bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 bg-gradient-to-lt from-white-alpha-56 via-white-alpha-56 to-white bg-gradient-to-t">Find Something Amazing </Typography>
           <Typography variant='bold1' align='center' className='text-center text-white'>in our vast file library!</Typography>
         </div>
-        <form className='flex flex-row gap-4 md:flex-row md:items-center' onSubmit={handleSubmit} >
+        <form className='flex flex-col gap-4 md:flex-row md:items-center ' onSubmit={handleSubmit} >
 
-          <Input name='keyword' defaultValue={keyword?.toString()} required type="text" placeholder='Search' className='w-80'/>
+          <Input name='keyword' defaultValue={keyword?.toString()} required type="text" placeholder='Search' className='w-full md:w-80'/>
           <Input
               name='yearStart'
               value={yearStart || undefined}
               placeholder='Year Start'
-              className='w-28' type={'text'} />
+              className='md:w-28' type={'text'} />
 
           <Input
               name='yearEnd'
               value={yearEnd || undefined}
               placeholder='Year End'
-              className='w-28' type={'text'} />
+              className='md:w-28' type={'text'} />
         
           <Button 
             type="submit" 
-            className='bg-transparent border border-gray-400 text-white rounded-full w-10 h-10 justify-center items-center hover:border-white transition-all' 
+            className='bg-transparent border flex flex-row border-gray-400 text-white rounded-full md:w-10 h-10 justify-center items-center hover:bg-white hover:border-white transition-all' 
             label={''}
             endAddornment={<SearchIcon className='m-auto w-4 h-4'/>} 
-          />
+          >
+          </Button>
         </form>
       
         {isLoading ? (
@@ -119,7 +121,7 @@ export default function Home() {
                   <Typography variant='regular2' className="text-primary text-white mr-2">Results for </Typography> 
                   <Typography variant='bold4' className='text-white'> &quot;{keyword}&quot;</Typography>
                 </div>
-                <Typography variant='light5' className="text-primary text-white">About {results.length} results</Typography>
+                <Typography variant='light5' className="hidden text-primary text-white md:flex">About {results.length} results</Typography>
               </div>
 
               <div className='flex flex-wrap gap-4 py-8 justify-center'>
