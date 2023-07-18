@@ -14,18 +14,19 @@ export default function Home() {
   const router = useRouter()
 
   const [results, setResults] = useState([]);
+  const [totalHits, setTotalHits] = useState<number>();
   const [selected, setSelected] = useState<ImageSelected>()
   const [isLoading, setIsLoading] = useState(false); 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const keyword = params.get("keyword")
-  const yearStart = params.get("yearStart")
-  const yearEnd = params.get("yearEnd")
+  const yearStart = parseInt(params.get("yearStart") || '')
+  const yearEnd = parseInt(params.get("yearEnd") || '')
 
   
   useEffect(() => {
     if(keyword){
-      searchSearch(keyword?.toString(), yearStart?.toString(), yearEnd?.toString())
+      searchSearch(keyword?.toString(), yearStart || 0 , yearEnd || 0)
     }
   }, [])
 
@@ -33,7 +34,7 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
-  const handleModalOpen = (data: InfoImage, thumbnails: string) => {
+  const handleModalOpen = (data: InfoImage, thumbnails: string, ) => {
     const newSelected = {data, thumbnails} as ImageSelected
     setSelected(newSelected)
 
@@ -43,20 +44,30 @@ export default function Home() {
   const handleSubmit = async (event: any) => {
     event.preventDefault()
     const keyword = event.target.elements.keyword.value;
-    const yearStart = event.target.elements.yearStart.value;
-    const yearEnd = event.target.elements.yearEnd.value;
+    const yearStart = event.target.elements.yearStart.value == '' ? 0 : parseInt(event.target.elements.yearStart.value);
+    const yearEnd = event.target.elements.yearEnd.value == '' ? 0 : parseInt(event.target.elements.yearEnd.value);
 
     searchSearch(keyword, yearStart, yearEnd)
     router.push(`?keyword=${keyword}&yearStart=${yearStart}&yearEnd=${yearEnd}`)
 
   };
 
-  const searchSearch = (keyword: string, yearStart: string | undefined, yearEnd: string | undefined) => {
+  const searchSearch = (keyword: string, yearStart: number, yearEnd: number | undefined) => {
     setIsLoading(true);
 
-    searchItems(keyword, { media_type: 'image' })
+    const options : { media_type:string, year_start?: number, year_end?: number } = { media_type: 'image', year_start: yearStart, year_end: yearEnd};
+
+    if (yearStart === 0) {
+      delete options.year_start;
+    }
+    if (yearEnd === 0) {
+      delete options.year_end
+    }
+
+    searchItems(keyword, options)
       .then(response => {
         setResults(response.collection.items)
+        setTotalHits(response.collection.metadata.total_hits)
         setIsLoading(false); // Set loading state to false after the API request
       })
       .catch(error => {
@@ -89,13 +100,13 @@ export default function Home() {
           <Input name='keyword' defaultValue={keyword?.toString()} required type="text" placeholder='Search' className='w-full md:w-80'/>
           <Input
               name='yearStart'
-              value={yearStart || undefined}
+              defaultValue={yearStart || undefined}
               placeholder='Year Start'
               className='md:w-28' type={'text'} />
 
           <Input
               name='yearEnd'
-              value={yearEnd || undefined}
+              defaultValue={yearEnd || undefined}
               placeholder='Year End'
               className='md:w-28' type={'text'} />
         
@@ -121,7 +132,7 @@ export default function Home() {
                   <Typography variant='regular2' className="text-primary text-white mr-2">Results for </Typography> 
                   <Typography variant='bold4' className='text-white'> &quot;{keyword}&quot;</Typography>
                 </div>
-                <Typography variant='light5' className="hidden text-primary text-white md:flex">About {results.length} results</Typography>
+                <Typography variant='light5' className="hidden text-primary text-white md:flex">About {totalHits} results</Typography>
               </div>
 
               <div className='flex flex-wrap gap-4 py-8 justify-center'>
