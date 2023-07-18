@@ -1,4 +1,4 @@
-Inspired on the [Figma](https://www.figma.com/community/file/1187809544925739392)
+🌴 Inspired on the [Figma](https://www.figma.com/community/file/1187809544925739392)
 
 ## Getting Started with development server
 
