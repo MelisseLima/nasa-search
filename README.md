@@ -10,8 +10,6 @@ href="https://github.com/MelisseCabral/nasa-search/assets/9977351/df1b0108-5d1f-
 src="https://github.com/MelisseCabral/nasa-search/assets/9977351/10de531f-d393-4053-9df7-a2598b73071d"/>
 </h1>
 
-https
-
 # [DEMO!](https://nasa-search-codekeeper.vercel.app) 
 
 🌴 Inspired on the [Figma](https://www.figma.com/community/file/1187809544925739392)
