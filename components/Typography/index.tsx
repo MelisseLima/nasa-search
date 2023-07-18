@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { FC, HTMLProps, ReactNode } from 'react';
 import './styles.css';
 
-type TypographyProps = {
+export type TypographyProps = {
   /**
    * Set the text-align on the component.
    * @default 'inherit'

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component renders snapshot unchanged 1`] = `
+<div>
+  <button
+    class="storybook-button storybook-button--medium storybook-button--secondary"
+  >
+    <span
+      class="typography regular5-typography text-inherit"
+    >
+      Click me
+    </span>
+  </button>
+</div>
+`;

@@ -1,10 +1,6 @@
 .storybook-button {
-  @apply font-semibold rounded-full inline-block leading-none hover:scale-105 transition-all cursor-pointer focus:ring-0;
+  @apply font-semibold rounded-full inline-block leading-none hover:scale-105 transition-all border-0 border-solid cursor-pointer focus:ring-0;
 
-}
-
-.storybook-button svg path {
-  @apply fill-current;
 }
 
 .storybook-button:hover svg path {
@@ -16,7 +12,7 @@
 }
 
 .storybook-button--secondary {
-  @apply text-gray-700 bg-transparent shadow-inner border border-gray-300;
+  @apply text-gray-700 bg-transparent shadow-inner border border-solid border-gray-300;
 }
 
 .storybook-button--small {

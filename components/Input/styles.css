@@ -1,7 +1,7 @@
 .input-primary {
   @apply leading-9 px-4 bg-transparent border border-gray-400 rounded-full text-sm
    text-white outline-none transition-colors duration-200 ease-in-out focus:ring-0
-  disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 
+  disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500 border-solid 
 }
 
 .error-input {

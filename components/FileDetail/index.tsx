@@ -13,7 +13,7 @@ interface IFileDetail extends PropsWithChildren<HTMLAttributes<HTMLButtonElement
   onClose: () => void;
 }
 
-export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
+const FileDetail: React.FC<IFileDetail> = ({ isOpen, selected, onClose }) => {
 
   const date = selected ? new Date(selected?.data?.date_created?.toString() ?? '') : null;
 
@@ -103,3 +103,5 @@ export default function FileDetail({ isOpen, selected, onClose }: IFileDetail) {
     </Dialog>
   );
 };
+
+export default FileDetail;

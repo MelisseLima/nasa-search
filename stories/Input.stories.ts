@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from '../components';
 
 const meta: Meta<typeof Input> = {
-  title: 'Example/Input',
+  title: 'Components/Input',
   component: Input,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
